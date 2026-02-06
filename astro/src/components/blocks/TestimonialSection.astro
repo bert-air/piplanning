@@ -1,0 +1,40 @@
+---
+import Container from '../ui/Container.astro';
+import Card from '../ui/Card.astro';
+import StrapiImage from '../ui/StrapiImage.astro';
+import type { TestimonialBlock } from '../../lib/types';
+
+type Props = Omit<TestimonialBlock, '__component'>;
+
+const { sectionTitle, testimonials } = Astro.props;
+---
+<section class="py-16 md:py-24">
+  <Container>
+    {sectionTitle && (
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-12">{sectionTitle}</h2>
+    )}
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {testimonials.map((testimonial) => (
+        <Card>
+          <blockquote class="text-neutral-700 mb-6 italic">
+            &ldquo;{testimonial.quote}&rdquo;
+          </blockquote>
+          <div class="flex items-center gap-3">
+            {testimonial.avatar && (
+              <StrapiImage image={testimonial.avatar} class="h-12 w-12 rounded-full object-cover" />
+            )}
+            <div>
+              <p class="font-semibold text-neutral-900 text-sm">{testimonial.authorName}</p>
+              {testimonial.authorTitle && (
+                <p class="text-xs text-neutral-500">{testimonial.authorTitle}</p>
+              )}
+              {testimonial.companyName && (
+                <p class="text-xs text-neutral-500">{testimonial.companyName}{testimonial.companySize ? ` (${testimonial.companySize})` : ''}</p>
+              )}
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,8 @@
+{
+  "collectionName": "components_blocks_solution_cards",
+  "info": { "displayName": "Solution Cards", "icon": "grid" },
+  "attributes": {
+    "sectionTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "cards": { "type": "component", "repeatable": true, "component": "blocks.solution-card" }
+  }
+}

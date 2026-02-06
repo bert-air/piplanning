@@ -1,0 +1,24 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import { LOCALES, t } from '../../lib/i18n';
+import type { Locale } from '../../lib/i18n';
+
+export async function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+---
+<PageLayout locale={locale} title={t(locale, 'contact.title')}>
+  <section class="py-16 md:py-24">
+    <Container class="max-w-2xl text-center">
+      <h1 class="text-4xl font-bold text-neutral-900 mb-4">{t(locale, 'contact.title')}</h1>
+      <p class="text-lg text-neutral-600 mb-12">{t(locale, 'contact.description')}</p>
+      <!-- HubSpot form will be embedded here -->
+      <div id="hubspot-form" class="text-left">
+        <p class="text-neutral-500 text-center py-8">Formulaire de contact bientôt disponible.</p>
+      </div>
+    </Container>
+  </section>
+</PageLayout>

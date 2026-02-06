@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_feature_sections",
+  "info": { "displayName": "Feature Section", "icon": "apps" },
+  "attributes": {
+    "tagline": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "title": { "type": "string", "required": true, "pluginOptions": { "i18n": { "localized": true } } },
+    "description": { "type": "richtext", "pluginOptions": { "i18n": { "localized": true } } },
+    "image": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "imagePosition": { "type": "enumeration", "enum": ["left", "right"], "default": "right" },
+    "bulletPoints": { "type": "component", "repeatable": true, "component": "blocks.bullet-point" },
+    "cta": { "type": "component", "component": "shared.cta-button" },
+    "badge": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } }
+  }
+}

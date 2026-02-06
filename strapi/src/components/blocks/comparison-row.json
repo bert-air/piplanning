@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_blocks_comparison_rows",
+  "info": { "displayName": "Comparison Row", "icon": "arrowRight" },
+  "attributes": {
+    "metric": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "beforeValue": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "afterValue": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } }
+  }
+}

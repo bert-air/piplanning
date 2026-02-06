@@ -1,0 +1,20 @@
+---
+import Container from '../ui/Container.astro';
+import type { MetricsBlock } from '../../lib/types';
+
+type Props = Omit<MetricsBlock, '__component'>;
+
+const { metrics } = Astro.props;
+---
+<section class="py-16 md:py-20 bg-primary-950 text-white">
+  <Container>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      {metrics.map((metric) => (
+        <div>
+          <p class="text-4xl md:text-5xl font-extrabold text-primary-300 mb-2">{metric.value}</p>
+          <p class="text-sm text-primary-200">{metric.label}</p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

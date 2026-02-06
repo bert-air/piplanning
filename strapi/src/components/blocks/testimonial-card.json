@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blocks_testimonial_cards",
+  "info": { "displayName": "Testimonial Card", "icon": "quote" },
+  "attributes": {
+    "quote": { "type": "text", "required": true, "pluginOptions": { "i18n": { "localized": true } } },
+    "authorName": { "type": "string", "required": true },
+    "authorTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "companyName": { "type": "string" },
+    "companySize": { "type": "string" },
+    "avatar": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "companyLogo": { "type": "media", "multiple": false, "allowedTypes": ["images"] }
+  }
+}

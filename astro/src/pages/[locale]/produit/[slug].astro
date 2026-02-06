@@ -1,0 +1,53 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import DynamicZone from '../../../components/blocks/DynamicZone.astro';
+import SEOHead from '../../../components/common/SEOHead.astro';
+import Breadcrumbs from '../../../components/common/Breadcrumbs.astro';
+import { fetchCollection } from '../../../lib/strapi';
+import { LOCALES, t, getLocalePath } from '../../../lib/i18n';
+import type { Locale } from '../../../lib/i18n';
+import type { ProductPage } from '../../../lib/types';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const locale of LOCALES) {
+    try {
+      const pages = await fetchCollection<ProductPage>('product-pages', locale);
+      for (const page of pages) {
+        paths.push({ params: { locale, slug: page.slug }, props: { page } });
+      }
+    } catch {
+      // Strapi not available
+    }
+  }
+  // Fallback paths if no Strapi data
+  if (paths.length === 0) {
+    const defaultSlugs = ['connecteur-jira', 'vue-business', 'roadmap-partagee', 'capacity-planning', 'flash-report', 'suivi-pi-continu', 'fonctionnalites-ia'];
+    for (const locale of LOCALES) {
+      for (const slug of defaultSlugs) {
+        paths.push({ params: { locale, slug }, props: { page: null } });
+      }
+    }
+  }
+  return paths;
+}
+
+const locale = Astro.params.locale as Locale;
+const { page } = Astro.props;
+---
+<PageLayout locale={locale} title={page?.seo?.metaTitle || page?.title || 'Product'}>
+  {page?.seo && <SEOHead slot="head" seo={page.seo} locale={locale} />}
+  <Breadcrumbs items={[
+    { label: 'Home', href: getLocalePath(locale, '/') },
+    { label: t(locale, 'nav.product'), href: getLocalePath(locale, '/produit/connecteur-jira') },
+    { label: page?.title || 'Product' },
+  ]} />
+  {page?.body ? (
+    <DynamicZone blocks={page.body} />
+  ) : (
+    <section class="py-32 text-center">
+      <h1 class="text-4xl font-bold text-neutral-900 mb-4">Page produit</h1>
+      <p class="text-neutral-600">Contenu bientôt disponible.</p>
+    </section>
+  )}
+</PageLayout>

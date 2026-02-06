@@ -1,0 +1,44 @@
+---
+import HeroSection from './HeroSection.astro';
+import FeatureSection from './FeatureSection.astro';
+import PainPointsSection from './PainPointsSection.astro';
+import BeforeAfterTable from './BeforeAfterTable.astro';
+import CompetitorComparison from './CompetitorComparison.astro';
+import TestimonialSection from './TestimonialSection.astro';
+import LogoCloud from './LogoCloud.astro';
+import MetricsSection from './MetricsSection.astro';
+import FAQSection from './FAQSection.astro';
+import CTASection from './CTASection.astro';
+import RichTextSection from './RichTextSection.astro';
+import SolutionCards from './SolutionCards.astro';
+import VideoEmbed from './VideoEmbed.astro';
+import type { DynamicZoneBlock } from '../../lib/types';
+
+interface Props {
+  blocks: DynamicZoneBlock[];
+}
+
+const { blocks } = Astro.props;
+
+const componentMap: Record<string, any> = {
+  'blocks.hero-section': HeroSection,
+  'blocks.feature-section': FeatureSection,
+  'blocks.pain-points-section': PainPointsSection,
+  'blocks.before-after-table': BeforeAfterTable,
+  'blocks.competitor-comparison': CompetitorComparison,
+  'blocks.testimonial-section': TestimonialSection,
+  'blocks.logo-cloud': LogoCloud,
+  'blocks.metrics-section': MetricsSection,
+  'blocks.faq-section': FAQSection,
+  'blocks.cta-section': CTASection,
+  'blocks.rich-text-section': RichTextSection,
+  'blocks.solution-cards': SolutionCards,
+  'blocks.video-embed': VideoEmbed,
+};
+---
+
+{blocks?.map((block) => {
+  const Component = componentMap[block.__component];
+  if (!Component) return null;
+  return <Component {...block} />;
+})}

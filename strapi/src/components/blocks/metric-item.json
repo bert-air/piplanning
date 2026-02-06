@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_blocks_metric_items",
+  "info": { "displayName": "Metric Item", "icon": "chartPie" },
+  "attributes": {
+    "value": { "type": "string", "required": true, "pluginOptions": { "i18n": { "localized": true } } },
+    "label": { "type": "string", "required": true, "pluginOptions": { "i18n": { "localized": true } } },
+    "icon": { "type": "media", "multiple": false, "allowedTypes": ["images"] }
+  }
+}

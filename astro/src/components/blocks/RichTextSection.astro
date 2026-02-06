@@ -1,0 +1,13 @@
+---
+import Container from '../ui/Container.astro';
+import type { RichTextBlock } from '../../lib/types';
+
+type Props = Omit<RichTextBlock, '__component'>;
+
+const { content } = Astro.props;
+---
+<section class="py-16 md:py-24">
+  <Container class="max-w-3xl">
+    <div class="prose prose-lg max-w-none" set:html={content} />
+  </Container>
+</section>

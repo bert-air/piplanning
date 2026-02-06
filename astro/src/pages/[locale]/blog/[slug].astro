@@ -1,0 +1,32 @@
+---
+import BlogLayout from '../../../layouts/BlogLayout.astro';
+import SEOHead from '../../../components/common/SEOHead.astro';
+import { fetchCollection } from '../../../lib/strapi';
+import { LOCALES } from '../../../lib/i18n';
+import type { Locale } from '../../../lib/i18n';
+import type { BlogPost } from '../../../lib/types';
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const locale of LOCALES) {
+    try {
+      const posts = await fetchCollection<BlogPost>('blog-posts', locale);
+      for (const post of posts) {
+        paths.push({ params: { locale, slug: post.slug }, props: { post } });
+      }
+    } catch {
+      // Strapi not available
+    }
+  }
+  return paths;
+}
+
+const locale = Astro.params.locale as Locale;
+const { post } = Astro.props;
+
+if (!post) return Astro.redirect(`/${locale}/blog`);
+---
+<BlogLayout locale={locale} post={post}>
+  {post.seo && <SEOHead slot="head" seo={post.seo} locale={locale} />}
+  <Fragment set:html={post.content} />
+</BlogLayout>

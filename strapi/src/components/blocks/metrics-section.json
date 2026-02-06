@@ -1,0 +1,7 @@
+{
+  "collectionName": "components_blocks_metrics_sections",
+  "info": { "displayName": "Metrics Section", "icon": "chartPie" },
+  "attributes": {
+    "metrics": { "type": "component", "repeatable": true, "component": "blocks.metric-item" }
+  }
+}

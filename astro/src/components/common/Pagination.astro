@@ -1,0 +1,46 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string;
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+---
+{totalPages > 1 && (
+  <nav aria-label="Pagination" class="flex items-center justify-center gap-2 mt-12">
+    {currentPage > 1 && (
+      <a
+        href={currentPage === 2 ? baseUrl : `${baseUrl}/${currentPage - 1}`}
+        class="px-3 py-2 text-sm text-neutral-600 hover:text-primary-500 rounded-lg hover:bg-primary-50"
+      >
+        &larr;
+      </a>
+    )}
+
+    {pages.map((page) => (
+      <a
+        href={page === 1 ? baseUrl : `${baseUrl}/${page}`}
+        class:list={[
+          'px-3 py-2 text-sm rounded-lg',
+          page === currentPage
+            ? 'bg-primary-500 text-white font-semibold'
+            : 'text-neutral-600 hover:text-primary-500 hover:bg-primary-50',
+        ]}
+      >
+        {page}
+      </a>
+    ))}
+
+    {currentPage < totalPages && (
+      <a
+        href={`${baseUrl}/${currentPage + 1}`}
+        class="px-3 py-2 text-sm text-neutral-600 hover:text-primary-500 rounded-lg hover:bg-primary-50"
+      >
+        &rarr;
+      </a>
+    )}
+  </nav>
+)}

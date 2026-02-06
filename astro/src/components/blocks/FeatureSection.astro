@@ -1,0 +1,50 @@
+---
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+import Badge from '../ui/Badge.astro';
+import StrapiImage from '../ui/StrapiImage.astro';
+import type { FeatureBlock } from '../../lib/types';
+
+type Props = Omit<FeatureBlock, '__component'>;
+
+const { tagline, title, description, image, imagePosition = 'right', bulletPoints, cta, badge } = Astro.props;
+const isReversed = imagePosition === 'left';
+---
+<section class="py-16 md:py-24">
+  <Container>
+    <div class:list={['flex flex-col md:flex-row items-center gap-12 md:gap-16', isReversed && 'md:flex-row-reverse']}>
+      <div class="flex-1 space-y-6">
+        {badge && <Badge>{badge}</Badge>}
+        {tagline && <p class="text-sm font-semibold text-primary-500 uppercase tracking-wide">{tagline}</p>}
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900">{title}</h2>
+        {description && <div class="text-lg text-neutral-600 prose" set:html={description} />}
+        {bulletPoints && bulletPoints.length > 0 && (
+          <ul class="space-y-3">
+            {bulletPoints.map((point) => (
+              <li class="flex items-start gap-3">
+                {point.icon ? (
+                  <StrapiImage image={point.icon} class="h-5 w-5 mt-0.5 shrink-0" />
+                ) : (
+                  <svg class="h-5 w-5 mt-0.5 shrink-0 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                )}
+                <span class="text-neutral-700">{point.text}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {cta && (
+          <Button href={cta.url} variant={cta.variant || 'primary'} openInNewTab={cta.openInNewTab}>
+            {cta.label}
+          </Button>
+        )}
+      </div>
+      {image && (
+        <div class="flex-1">
+          <StrapiImage image={image} class="w-full rounded-xl shadow-lg" />
+        </div>
+      )}
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,35 @@
+---
+import Container from '../ui/Container.astro';
+import type { BeforeAfterBlock } from '../../lib/types';
+
+type Props = Omit<BeforeAfterBlock, '__component'>;
+
+const { title, beforeLabel = 'Avant', afterLabel = 'Après', rows } = Astro.props;
+---
+<section class="py-16 md:py-24">
+  <Container class="max-w-4xl">
+    {title && (
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-12">{title}</h2>
+    )}
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="text-left py-4 px-6 text-sm font-semibold text-neutral-500 uppercase tracking-wide"></th>
+            <th class="text-left py-4 px-6 text-sm font-semibold text-accent-red uppercase tracking-wide">{beforeLabel}</th>
+            <th class="text-left py-4 px-6 text-sm font-semibold text-primary-500 uppercase tracking-wide">{afterLabel}</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-neutral-200">
+          {rows.map((row) => (
+            <tr class="hover:bg-neutral-50">
+              <td class="py-4 px-6 font-medium text-neutral-900">{row.metric}</td>
+              <td class="py-4 px-6 text-neutral-600">{row.beforeValue}</td>
+              <td class="py-4 px-6 text-primary-700 font-medium">{row.afterValue}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Container>
+</section>

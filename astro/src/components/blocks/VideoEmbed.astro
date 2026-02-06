@@ -1,0 +1,40 @@
+---
+import Container from '../ui/Container.astro';
+import StrapiImage from '../ui/StrapiImage.astro';
+import type { VideoEmbedBlock } from '../../lib/types';
+
+type Props = Omit<VideoEmbedBlock, '__component'>;
+
+const { title, videoUrl, thumbnail } = Astro.props;
+
+// Extract video ID for common platforms
+function getEmbedUrl(url: string): string {
+  const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
+  if (youtubeMatch) return `https://www.youtube-nocookie.com/embed/${youtubeMatch[1]}`;
+
+  const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
+  if (vimeoMatch) return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+
+  return url;
+}
+
+const embedUrl = getEmbedUrl(videoUrl);
+---
+<section class="py-16 md:py-24">
+  <Container class="max-w-4xl">
+    {title && (
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-8">{title}</h2>
+    )}
+    <div class="relative aspect-video rounded-xl overflow-hidden shadow-lg bg-neutral-900">
+      <iframe
+        src={embedUrl}
+        class="absolute inset-0 w-full h-full"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+        title={title || 'Video'}
+      ></iframe>
+    </div>
+  </Container>
+</section>

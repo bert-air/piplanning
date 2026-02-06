@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_blocks_competitor_cards",
+  "info": { "displayName": "Competitor Card", "icon": "chartBubble" },
+  "attributes": {
+    "name": { "type": "string" },
+    "logo": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "weakness": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } }
+  }
+}

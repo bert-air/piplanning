@@ -1,0 +1,95 @@
+---
+import Container from '../ui/Container.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { t, getLocalePath } from '../../lib/i18n';
+import type { Locale } from '../../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const productLinks = [
+  { label: 'Connecteur Jira', slug: 'connecteur-jira' },
+  { label: 'Vue Business', slug: 'vue-business' },
+  { label: 'Roadmap Partagée', slug: 'roadmap-partagee' },
+  { label: 'Capacity Planning', slug: 'capacity-planning' },
+  { label: 'Flash Report', slug: 'flash-report' },
+  { label: 'Suivi PI Continu', slug: 'suivi-pi-continu' },
+  { label: 'IA', slug: 'fonctionnalites-ia' },
+];
+
+const resourceLinks = [
+  { label: t(locale, 'nav.blog'), path: '/blog' },
+  { label: t(locale, 'nav.guides'), path: '/guide/pi-planning' },
+];
+
+const comparisonLinks = [
+  { label: 'vs Jira Align', slug: 'jira-align' },
+  { label: 'vs PowerBI + Jira', slug: 'powerbi-jira' },
+  { label: 'vs piplanning.io', slug: 'piplanning-io' },
+];
+---
+<footer class="bg-primary-950 text-neutral-300">
+  <Container>
+    <div class="py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-sm font-semibold text-white mb-4">{t(locale, 'footer.product')}</h3>
+        <ul class="space-y-2">
+          {productLinks.map((link) => (
+            <li>
+              <a href={getLocalePath(locale, `/produit/${link.slug}`)} class="text-sm hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-white mb-4">{t(locale, 'footer.resources')}</h3>
+        <ul class="space-y-2">
+          {resourceLinks.map((link) => (
+            <li>
+              <a href={getLocalePath(locale, link.path)} class="text-sm hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-white mb-4">{t(locale, 'nav.comparisons')}</h3>
+        <ul class="space-y-2">
+          {comparisonLinks.map((link) => (
+            <li>
+              <a href={getLocalePath(locale, `/comparaison/${link.slug}`)} class="text-sm hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-white mb-4">PI Planning</h3>
+        <p class="text-sm mb-4">La vue business qui manque à Jira.</p>
+        <LanguageSwitcher locale={locale} />
+      </div>
+    </div>
+
+    <div class="border-t border-neutral-800 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-neutral-500">&copy; {new Date().getFullYear()} AirSaaS. All rights reserved.</p>
+      <div class="flex items-center gap-6">
+        <a href={getLocalePath(locale, '/mentions-legales')} class="text-xs text-neutral-500 hover:text-white">
+          {t(locale, 'footer.legal')}
+        </a>
+        <a href={getLocalePath(locale, '/politique-confidentialite')} class="text-xs text-neutral-500 hover:text-white">
+          {t(locale, 'footer.privacy')}
+        </a>
+      </div>
+    </div>
+  </Container>
+</footer>

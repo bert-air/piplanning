@@ -1,0 +1,33 @@
+---
+import Container from '../ui/Container.astro';
+import Card from '../ui/Card.astro';
+import StrapiImage from '../ui/StrapiImage.astro';
+import type { CompetitorComparisonBlock } from '../../lib/types';
+
+type Props = Omit<CompetitorComparisonBlock, '__component'>;
+
+const { sectionTitle, competitors, airsaasAdvantage } = Astro.props;
+---
+<section class="py-16 md:py-24 bg-neutral-50">
+  <Container>
+    {sectionTitle && (
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-12">{sectionTitle}</h2>
+    )}
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      {competitors.map((competitor) => (
+        <Card>
+          <div class="flex items-center gap-3 mb-4">
+            {competitor.logo && <StrapiImage image={competitor.logo} class="h-8" />}
+            <h3 class="font-semibold text-neutral-900">{competitor.name}</h3>
+          </div>
+          <p class="text-sm text-neutral-600">{competitor.weakness}</p>
+        </Card>
+      ))}
+    </div>
+    {airsaasAdvantage && (
+      <div class="bg-primary-50 border border-primary-200 rounded-xl p-6 text-center">
+        <p class="text-primary-800 font-medium">{airsaasAdvantage}</p>
+      </div>
+    )}
+  </Container>
+</section>

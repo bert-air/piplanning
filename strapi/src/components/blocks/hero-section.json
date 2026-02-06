@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_blocks_hero_sections",
+  "info": { "displayName": "Hero Section", "icon": "star" },
+  "attributes": {
+    "headline": { "type": "string", "required": true, "pluginOptions": { "i18n": { "localized": true } } },
+    "subheadline": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "backgroundImage": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "primaryCta": { "type": "component", "component": "shared.cta-button" },
+    "secondaryCta": { "type": "component", "component": "shared.cta-button" },
+    "trustBadges": { "type": "component", "repeatable": true, "component": "blocks.trust-badge" }
+  }
+}

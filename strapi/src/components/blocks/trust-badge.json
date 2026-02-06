@@ -1,0 +1,8 @@
+{
+  "collectionName": "components_blocks_trust_badges",
+  "info": { "displayName": "Trust Badge", "icon": "check" },
+  "attributes": {
+    "icon": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "label": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } }
+  }
+}
