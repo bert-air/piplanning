@@ -1,0 +1,11 @@
+{
+  "collectionName": "components_blocks_cta_sections",
+  "info": { "displayName": "CTA Section", "icon": "cursor" },
+  "attributes": {
+    "title": { "type": "string", "required": true, "pluginOptions": { "i18n": { "localized": true } } },
+    "description": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "primaryCta": { "type": "component", "component": "shared.cta-button" },
+    "secondaryCta": { "type": "component", "component": "shared.cta-button" },
+    "backgroundVariant": { "type": "enumeration", "enum": ["light", "dark", "gradient"], "default": "dark" }
+  }
+}

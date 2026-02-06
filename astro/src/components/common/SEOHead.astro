@@ -1,0 +1,47 @@
+---
+import { LOCALES, getLocalePath, type Locale } from '../../lib/i18n';
+import { getStrapiMediaUrl } from '../../lib/strapi';
+import type { SEOMetadata } from '../../lib/types';
+
+interface Props {
+  seo?: SEOMetadata;
+  locale: Locale;
+  canonicalPath?: string;
+}
+
+const { seo, locale, canonicalPath } = Astro.props;
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://pi-planning.ai';
+const currentPath = Astro.url.pathname;
+const canonical = canonicalPath
+  ? `${site}${canonicalPath}`
+  : `${site}${currentPath}`;
+---
+{seo?.metaTitle && <title>{seo.metaTitle}</title>}
+{seo?.metaDescription && <meta name="description" content={seo.metaDescription} />}
+{seo?.noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Canonical -->
+<link rel="canonical" href={seo?.canonicalUrl || canonical} />
+
+<!-- Hreflang -->
+{LOCALES.map((l) => (
+  <link
+    rel="alternate"
+    hreflang={l}
+    href={`${site}/${l}${currentPath.replace(/^\/[a-z]{2}/, '')}`}
+  />
+))}
+<link rel="alternate" hreflang="x-default" href={`${site}/fr${currentPath.replace(/^\/[a-z]{2}/, '')}`} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+{seo?.metaTitle && <meta property="og:title" content={seo.metaTitle} />}
+{seo?.metaDescription && <meta property="og:description" content={seo.metaDescription} />}
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={locale} />
+{seo?.ogImage?.url && <meta property="og:image" content={getStrapiMediaUrl(seo.ogImage.url)} />}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+{seo?.metaTitle && <meta name="twitter:title" content={seo.metaTitle} />}
+{seo?.metaDescription && <meta name="twitter:description" content={seo.metaDescription} />}

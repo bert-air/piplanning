@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_blocks_before_after_tables",
+  "info": { "displayName": "Before After Table", "icon": "arrowRight" },
+  "attributes": {
+    "title": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "beforeLabel": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "afterLabel": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "rows": { "type": "component", "repeatable": true, "component": "blocks.comparison-row" }
+  }
+}

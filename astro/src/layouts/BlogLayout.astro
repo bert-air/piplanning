@@ -1,0 +1,41 @@
+---
+import PageLayout from './PageLayout.astro';
+import Container from '../components/ui/Container.astro';
+import { t } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
+import type { BlogPost } from '../lib/types';
+
+interface Props {
+  locale: Locale;
+  post: BlogPost;
+}
+
+const { locale, post } = Astro.props;
+---
+<PageLayout
+  title={post.seo?.metaTitle || post.title}
+  description={post.seo?.metaDescription || post.excerpt}
+  locale={locale}
+>
+  <slot name="head" slot="head" />
+  <article class="py-16">
+    <Container class="max-w-3xl">
+      <a href={`/${locale}/blog`} class="text-sm text-primary-500 hover:text-primary-600 mb-8 inline-flex items-center gap-1">
+        &larr; {t(locale, 'blog.backToList')}
+      </a>
+      {post.category && (
+        <span class="inline-block rounded-full bg-primary-100 text-primary-700 px-3 py-1 text-xs font-medium mb-4">
+          {post.category.name}
+        </span>
+      )}
+      <h1 class="text-4xl font-bold text-neutral-900 mb-4">{post.title}</h1>
+      <div class="flex items-center gap-4 text-sm text-neutral-500 mb-8">
+        {post.author && <span>{post.author}</span>}
+        {post.readingTime && <span>{post.readingTime} {t(locale, 'blog.minutes')}</span>}
+      </div>
+      <div class="prose prose-lg max-w-none">
+        <slot />
+      </div>
+    </Container>
+  </article>
+</PageLayout>

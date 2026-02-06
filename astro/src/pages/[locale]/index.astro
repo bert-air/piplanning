@@ -1,0 +1,33 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import DynamicZone from '../../components/blocks/DynamicZone.astro';
+import SEOHead from '../../components/common/SEOHead.astro';
+import { fetchSingleType } from '../../lib/strapi';
+import { LOCALES } from '../../lib/i18n';
+import type { Locale } from '../../lib/i18n';
+import type { Homepage } from '../../lib/types';
+
+export async function getStaticPaths() {
+  return LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const locale = Astro.params.locale as Locale;
+
+let homepage: Homepage | null = null;
+try {
+  homepage = await fetchSingleType<Homepage>('homepage', locale);
+} catch {
+  // Strapi not available - render placeholder
+}
+---
+<PageLayout locale={locale} title="PI Planning | AirSaaS">
+  {homepage?.seo && <SEOHead slot="head" seo={homepage.seo} locale={locale} />}
+  {homepage?.body ? (
+    <DynamicZone blocks={homepage.body} />
+  ) : (
+    <section class="py-32 text-center">
+      <h1 class="text-5xl font-extrabold text-neutral-900 mb-4">PI Planning</h1>
+      <p class="text-xl text-neutral-600">La vue business qui manque à Jira.</p>
+    </section>
+  )}
+</PageLayout>

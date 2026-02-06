@@ -1,0 +1,19 @@
+{
+  "name": "pi-planning-content-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "import": "tsx src/import-content.ts",
+    "import:homepage": "tsx src/import-homepage.ts",
+    "import:products": "tsx src/import-product-pages.ts",
+    "import:blog": "tsx src/import-blog-posts.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

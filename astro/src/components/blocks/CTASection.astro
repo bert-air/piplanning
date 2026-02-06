@@ -1,0 +1,37 @@
+---
+import Container from '../ui/Container.astro';
+import Button from '../ui/Button.astro';
+import type { CTASectionBlock } from '../../lib/types';
+
+type Props = Omit<CTASectionBlock, '__component'>;
+
+const { title, description, primaryCta, secondaryCta, backgroundVariant = 'dark' } = Astro.props;
+
+const bgClasses: Record<string, string> = {
+  light: 'bg-neutral-50 text-neutral-900',
+  dark: 'bg-primary-950 text-white',
+  gradient: 'bg-gradient-to-br from-primary-900 to-primary-600 text-white',
+};
+---
+<section class:list={['py-16 md:py-24', bgClasses[backgroundVariant]]}>
+  <Container class="text-center max-w-2xl">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+    {description && (
+      <p class:list={['text-lg mb-8', backgroundVariant === 'light' ? 'text-neutral-600' : 'text-primary-200']}>
+        {description}
+      </p>
+    )}
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      {primaryCta && (
+        <Button href={primaryCta.url} variant={backgroundVariant === 'light' ? 'primary' : 'secondary'} size="lg" openInNewTab={primaryCta.openInNewTab}>
+          {primaryCta.label}
+        </Button>
+      )}
+      {secondaryCta && (
+        <Button href={secondaryCta.url} variant="ghost" size="lg" openInNewTab={secondaryCta.openInNewTab}>
+          {secondaryCta.label}
+        </Button>
+      )}
+    </div>
+  </Container>
+</section>

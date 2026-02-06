@@ -1,0 +1,15 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_configs",
+  "info": { "singularName": "global-config", "pluralName": "global-configs", "displayName": "Global Config" },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": { "i18n": { "localized": true } },
+  "attributes": {
+    "siteName": { "type": "string", "default": "PI Planning par AirSaaS" },
+    "siteDescription": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "defaultOgImage": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "hubspotPortalId": { "type": "string" },
+    "hubspotFormId": { "type": "string" },
+    "socialLinks": { "type": "json" }
+  }
+}

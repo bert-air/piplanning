@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_blocks_pain_point_items",
+  "info": { "displayName": "Pain Point Item", "icon": "emotionUnhappy" },
+  "attributes": {
+    "number": { "type": "integer" },
+    "title": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "description": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "icon": { "type": "media", "multiple": false, "allowedTypes": ["images"] }
+  }
+}

@@ -1,0 +1,31 @@
+---
+import { getStrapiMediaUrl } from '../../lib/strapi';
+
+interface Props {
+  image: {
+    url: string;
+    alternativeText?: string;
+    width?: number;
+    height?: number;
+  } | null | undefined;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+}
+
+const { image, class: className = '', loading = 'lazy' } = Astro.props;
+
+if (!image) return null;
+
+const src = getStrapiMediaUrl(image.url);
+---
+{image && (
+  <img
+    src={src}
+    alt={image.alternativeText || ''}
+    width={image.width}
+    height={image.height}
+    loading={loading}
+    decoding="async"
+    class={className}
+  />
+)}

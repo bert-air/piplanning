@@ -1,0 +1,14 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": { "singularName": "homepage", "pluralName": "homepages", "displayName": "Homepage" },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": { "i18n": { "localized": true } },
+  "attributes": {
+    "body": {
+      "type": "dynamiczone",
+      "components": ["blocks.hero-section", "blocks.feature-section", "blocks.pain-points-section", "blocks.before-after-table", "blocks.competitor-comparison", "blocks.testimonial-section", "blocks.logo-cloud", "blocks.metrics-section", "blocks.faq-section", "blocks.cta-section", "blocks.rich-text-section", "blocks.solution-cards", "blocks.video-embed"]
+    },
+    "seo": { "type": "component", "component": "shared.seo-metadata" }
+  }
+}

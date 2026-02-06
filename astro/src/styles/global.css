@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* === Design Tokens (AirSaaS PI Planning) === */
+
+@theme {
+  /* Primary blue palette */
+  --color-primary-50: #eef0ff;
+  --color-primary-100: #dde2ff;
+  --color-primary-200: #c2c9ff;
+  --color-primary-300: #9da5ff;
+  --color-primary-400: #7577ff;
+  --color-primary-500: #475ce9;
+  --color-primary-600: #3a51db;
+  --color-primary-700: #2d3fb8;
+  --color-primary-800: #273695;
+  --color-primary-900: #071d4e;
+  --color-primary-950: #030f2e;
+
+  /* Accent */
+  --color-accent-red: #f11444;
+
+  /* Neutral */
+  --color-neutral-50: #fafafb;
+  --color-neutral-100: #f4f4f6;
+  --color-neutral-200: #e5e5ea;
+  --color-neutral-300: #d1d1d8;
+  --color-neutral-400: #a1a1ab;
+  --color-neutral-500: #63606e;
+  --color-neutral-600: #4a4854;
+  --color-neutral-700: #3a3843;
+  --color-neutral-800: #2a2831;
+  --color-neutral-900: #1a1820;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 4px 6px -1px rgba(7, 29, 78, 0.08), 0 2px 4px -2px rgba(7, 29, 78, 0.05);
+  --shadow-card-hover: 0 10px 25px -3px rgba(7, 29, 78, 0.12), 0 4px 10px -4px rgba(7, 29, 78, 0.07);
+
+  /* Border radius */
+  --radius-card: 12px;
+  --radius-button: 8px;
+}
+
+/* === Base Styles === */
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-neutral-800);
+  background-color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_shared_cta_buttons",
+  "info": { "displayName": "CTA Button", "icon": "cursor" },
+  "attributes": {
+    "label": { "type": "string", "required": true, "pluginOptions": { "i18n": { "localized": true } } },
+    "url": { "type": "string", "required": true, "pluginOptions": { "i18n": { "localized": true } } },
+    "variant": { "type": "enumeration", "enum": ["primary", "secondary", "outline", "ghost"], "default": "primary" },
+    "openInNewTab": { "type": "boolean", "default": false }
+  }
+}

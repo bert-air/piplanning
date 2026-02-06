@@ -1,0 +1,17 @@
+---
+import Container from '../ui/Container.astro';
+import Accordion from '../ui/Accordion.astro';
+import type { FAQBlock } from '../../lib/types';
+
+type Props = Omit<FAQBlock, '__component'>;
+
+const { title, items } = Astro.props;
+---
+<section class="py-16 md:py-24">
+  <Container class="max-w-3xl">
+    {title && (
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-12">{title}</h2>
+    )}
+    <Accordion items={items} />
+  </Container>
+</section>

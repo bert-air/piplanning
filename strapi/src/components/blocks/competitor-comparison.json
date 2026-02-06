@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_blocks_competitor_comparisons",
+  "info": { "displayName": "Competitor Comparison", "icon": "chartBubble" },
+  "attributes": {
+    "sectionTitle": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "competitors": { "type": "component", "repeatable": true, "component": "blocks.competitor-card" },
+    "airsaasAdvantage": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } }
+  }
+}

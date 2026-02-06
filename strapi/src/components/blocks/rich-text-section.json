@@ -1,0 +1,7 @@
+{
+  "collectionName": "components_blocks_rich_text_sections",
+  "info": { "displayName": "Rich Text Section", "icon": "feather" },
+  "attributes": {
+    "content": { "type": "richtext", "required": true, "pluginOptions": { "i18n": { "localized": true } } }
+  }
+}

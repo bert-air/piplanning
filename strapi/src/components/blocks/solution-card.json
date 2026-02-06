@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_blocks_solution_card_items",
+  "info": { "displayName": "Solution Card", "icon": "grid" },
+  "attributes": {
+    "title": { "type": "string", "pluginOptions": { "i18n": { "localized": true } } },
+    "description": { "type": "text", "pluginOptions": { "i18n": { "localized": true } } },
+    "icon": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "link": { "type": "component", "component": "shared.link" }
+  }
+}

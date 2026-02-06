@@ -1,0 +1,28 @@
+---
+import { LOCALES, type Locale } from '../../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale: currentLocale } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+<div class="flex items-center gap-1 text-sm">
+  {LOCALES.map((locale, i) => (
+    <>
+      <a
+        href={`/${locale}${currentPath.replace(/^\/[a-z]{2}/, '')}`}
+        class:list={[
+          'px-1.5 py-0.5 rounded transition-colors uppercase',
+          locale === currentLocale
+            ? 'font-semibold text-primary-500'
+            : 'text-neutral-400 hover:text-neutral-700',
+        ]}
+      >
+        {locale}
+      </a>
+      {i < LOCALES.length - 1 && <span class="text-neutral-300">|</span>}
+    </>
+  ))}
+</div>

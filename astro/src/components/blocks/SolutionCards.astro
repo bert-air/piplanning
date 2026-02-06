@@ -1,0 +1,36 @@
+---
+import Container from '../ui/Container.astro';
+import Card from '../ui/Card.astro';
+import StrapiImage from '../ui/StrapiImage.astro';
+import type { SolutionCardsBlock } from '../../lib/types';
+
+type Props = Omit<SolutionCardsBlock, '__component'>;
+
+const { sectionTitle, cards } = Astro.props;
+---
+<section class="py-16 md:py-24 bg-neutral-50">
+  <Container>
+    {sectionTitle && (
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-12">{sectionTitle}</h2>
+    )}
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {cards.map((card) => (
+        <Card>
+          {card.icon && <StrapiImage image={card.icon} class="h-10 w-10 mb-4" />}
+          <h3 class="text-lg font-semibold text-neutral-900 mb-2">{card.title}</h3>
+          <p class="text-sm text-neutral-600 mb-4">{card.description}</p>
+          {card.link && (
+            <a
+              href={card.link.url}
+              class="text-sm font-medium text-primary-500 hover:text-primary-600"
+              target={card.link.isExternal ? '_blank' : undefined}
+              rel={card.link.isExternal ? 'noopener noreferrer' : undefined}
+            >
+              {card.link.label} &rarr;
+            </a>
+          )}
+        </Card>
+      ))}
+    </div>
+  </Container>
+</section>
